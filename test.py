@@ -26,7 +26,7 @@ import pyodbc
 # s = 'DUCTHINHPC' #Your server name 
 # d = 'Hackathon' #Your database name
 # str = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+s+';DATABASE='+d+';Trusted_Connection=yes'
-str = 'Driver={ODBC Driver 17 for SQL Server};Server=tcp:hackathon-server-carbon.database.windows.net,1433;Database=hackathon-db-new;Uid=ducthinh-carbon;Pwd=th@nCarbo;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
+str = 'Driver={ODBC Driver 18 for SQL Server};Server=tcp:hackathon-server-carbon.database.windows.net,1433;Database=hackathon-db-new;Uid=ducthinh-carbon;Pwd=th@nCarbo;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
 
 def ret_cluster_knn(new_student_input):
     cols = ["MSSV","Cau1","Cau2","Cau3","Cau4","Cau5","Cau6","Cau7","Cau8","Cau9","Cau10","Cau11","Cau12","Cau13","Cau14","Cau15", "Cau16","Cau17","Cau18","Cau19","Cau20","Cau21","Cau22","Cau23","Cau24","Cau25","Cau26","Cau27","Cau28","Cau29","Cau30","Cau31","Cau32","Cau33","Cau34","Cau35"]
