@@ -5,5 +5,5 @@ pandas
 datetime
 matplotlib
 seaborn
-sklearn
+scikit-learn
 yellowbrick
