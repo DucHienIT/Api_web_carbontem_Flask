@@ -4,5 +4,5 @@
 set -o errexit
 
 pip install --upgrade pip
-pip install python==3.9
+python -m pip install --upgrade python==3.9
 pip install -r requirements.txt
