@@ -19,14 +19,7 @@ from sklearn import metrics
 import json
 import warnings
 import sys
-if not sys.warnoptions:
-    warnings.simplefilter("ignore")
-np.random.seed(42)
-import pyodbc 
-# s = 'DUCTHINHPC' #Your server name 
-# d = 'Hackathon' #Your database name
-# str = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+s+';DATABASE='+d+';Trusted_Connection=yes'
-str = 'Driver={ODBC Driver 18 for SQL Server};Server=tcp:hackathon-server-carbon.database.windows.net,1433;Database=hackathon-db-new;Uid=ducthinh-carbon;Pwd=th@nCarbo;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
+
 
 def ret_cluster_knn(new_student_input):
     cols = ["MSSV","Cau1","Cau2","Cau3","Cau4","Cau5","Cau6","Cau7","Cau8","Cau9","Cau10","Cau11","Cau12","Cau13","Cau14","Cau15", "Cau16","Cau17","Cau18","Cau19","Cau20","Cau21","Cau22","Cau23","Cau24","Cau25","Cau26","Cau27","Cau28","Cau29","Cau30","Cau31","Cau32","Cau33","Cau34","Cau35"]
@@ -35,16 +28,9 @@ def ret_cluster_knn(new_student_input):
     input_df.loc[len(input_df)] = new_student_input
 
 
-    conn = pyodbc.connect(str)
-    sql_query = pd.read_sql_query('select * from dbo.Quiz',conn) 
-    sql_query_road_mssv = pd.read_sql_query('select MSSV from dbo.Road',conn)
-    # here, the 'conn' is the variable that contains your database connection information from step 2
-    mssv_df = pd.DataFrame(sql_query_road_mssv)
-    mssv_lst = mssv_df["MSSV"].values.tolist()
-    
-    data = pd.DataFrame(sql_query)
-    data = data[data["MSSV"].isin(mssv_lst)]
-    print("Xem co thua ko", data)
+    #Scaling
+    #get the temp initial df to join with input and scaler
+    data = pd.read_csv("./quiz.csv", names=cols)
     dropped_na_df = data.dropna(axis=0,inplace=False)
 
     all_mssv = dropped_na_df["MSSV"] #keep all mssv for later use
@@ -70,21 +56,22 @@ def ret_cluster_knn(new_student_input):
     mssv_np = joined_mssv_df["MSSV"].to_numpy()
     mssv_lst = mssv_np.tolist()
     return mssv_lst
+# input_vals = [78110003,0,1,1,0,1,9,6,2,1,6,5,6,9,3,7,4,9,3,7,9,5,7,5,0,6,0,3,2,6,8,9,3,5,7,6]
+# pipe1 = ret_cluster(input_vals)
+# print(pipe1)
 
 
 def get_learning_path_knn(input_quiz):
     #pipe1 trả về index cluster của input và ndarray(numpy) mssv thuộc cùng cluster đó
     mssv_nn = ret_cluster_knn(input_quiz)
-    #print("MSSVs:", mssv_nn)
-    conn = pyodbc.connect(str)
-    sql_query = pd.read_sql_query('select * from dbo.Road',conn)
-    df_learning_path = pd.DataFrame(sql_query)
-    print("Thu connect db:",df_learning_path)
+    print("MSSVs:", mssv_nn)
+    df_learning_path = pd.read_csv("./road.csv")
 
     df_learning_path = df_learning_path[df_learning_path['MSSV'].isin(mssv_nn)]
     #sort by dtb descending and get 5 value
 
     ret_df_learning_path = df_learning_path[df_learning_path.columns[0:19]]
     return ret_df_learning_path.to_json(orient='records')
+
 # input_quiz = [78110003,0,1,1,0,1,9,6,2,1,6,5,6,9,3,7,4,9,3,7,9,5,7,5,0,6,0,3,2,6,8,9,3,5,7,6]
 # print(get_learning_path_knn(input_quiz))
