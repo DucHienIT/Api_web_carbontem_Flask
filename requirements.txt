@@ -7,7 +7,6 @@ matplotlib
 seaborn
 sklearn
 yellowbrick
-mpl_toolkits
 json
 warnings
 sys
