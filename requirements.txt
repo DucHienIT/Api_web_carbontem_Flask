@@ -8,4 +8,3 @@ seaborn
 sklearn
 yellowbrick
 jsonlib
-warnings
