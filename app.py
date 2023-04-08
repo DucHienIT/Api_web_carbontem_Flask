@@ -6,7 +6,7 @@ import pyodbc
 # s = 'DUCTHINHPC' #Your server name 
 # d = 'Hackathon' #Your database name
 # str = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+s+';DATABASE='+d+';Trusted_Connection=yes'
-str = 'Driver={ODBC Driver 17 for SQL Server};Server=tcp:hackathon-server-carbon.database.windows.net,1433;Database=hackathon-db-new;Uid=ducthinh-carbon;Pwd=th@nCarbo;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
+str = 'Driver={ODBC Driver 18 for SQL Server};Server=tcp:hackathon-server-carbon.database.windows.net,1433;Database=hackathon-db-new;Uid=ducthinh-carbon;Pwd=th@nCarbo;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
 app = Flask(__name__)
 CORS(app)
 
