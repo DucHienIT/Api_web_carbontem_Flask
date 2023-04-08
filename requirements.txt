@@ -1,0 +1,13 @@
+flask
+flask_cors
+numpy
+pandas
+datetime
+matplotlib
+seaborn
+sklearn
+yellowbrick
+mpl_toolkits
+json
+warnings
+sys
