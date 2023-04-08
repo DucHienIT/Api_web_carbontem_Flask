@@ -17,6 +17,7 @@ from sklearn.neighbors import NearestNeighbors
 from matplotlib.colors import ListedColormap
 from sklearn import metrics
 import json
+import warnings
 import sys
 
 
